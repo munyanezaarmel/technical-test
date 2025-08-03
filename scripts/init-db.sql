@@ -1,0 +1,2 @@
+-- Initialize database tables
+-- This script will be automatically executed by Prisma
