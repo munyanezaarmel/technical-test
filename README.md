@@ -13,7 +13,7 @@ A fullstack Next.js application for managing personal product lists with email-o
 
 ## Tech Stack
 
-- **Framework**: Next.js 14 with App Router
+- **Framework**: Next.js 14 with page Router
 - **Authentication**: NextAuth.js with Resend email provider
 - **Database**: Prisma with SQLite (easily switchable to PostgreSQL)
 - **Email**: Resend for reliable email delivery
@@ -97,12 +97,6 @@ src/
 2. Verify DNS records
 3. Update `EMAIL_FROM` to use your domain: `noreply@yourdomain.com`
 
-### Why Resend?
-- ✅ **Real emails**: Delivers to Gmail, Outlook, etc.
-- ✅ **Free tier**: 100 emails/day, 3,000/month
-- ✅ **Production ready**: Works on Vercel out of the box
-- ✅ **Great deliverability**: High inbox placement rates
-- ✅ **Simple setup**: Just one API key needed
 
 ## Database
 
@@ -114,17 +108,7 @@ The app uses SQLite by default for easy development. To switch to PostgreSQL:
 
 ## Deployment
 
-### Vercel (Recommended)
 
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Add environment variables in Vercel dashboard:
-   - `DATABASE_URL` (use Vercel Postgres or Neon)
-   - `NEXTAUTH_URL` (your production domain)
-   - `NEXTAUTH_SECRET` (generate a secure random string)
-   - `RESEND_API_KEY` (your Resend API key)
-   - `EMAIL_FROM` (your verified domain email)
-4. Deploy!
 
 ## Environment Variables for Production
 
@@ -136,24 +120,7 @@ RESEND_API_KEY="re_your_resend_api_key"
 EMAIL_FROM="noreply@yourdomain.com"
 \`\`\`
 
-## Best Practices Implemented
 
-- ✅ Clean separation of concerns (screen/layout/service/backend)
-- ✅ No Tailwind classes in screen or API files
-- ✅ Error handling in API/backend layers
-- ✅ Optimistic updates with SWR
-- ✅ Type safety with TypeScript
-- ✅ Semantic component structure
-- ✅ Responsive design patterns
-- ✅ Production-ready email delivery
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feat/new-feature`
-3. Commit changes: `git commit -m 'feat: add new feature'`
-4. Push to branch: `git push origin feat/new-feature`
-5. Submit a pull request
 
 ## License
 
