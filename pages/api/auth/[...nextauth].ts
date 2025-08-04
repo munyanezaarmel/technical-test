@@ -2,30 +2,40 @@ import NextAuth, { type NextAuthOptions } from "next-auth"
 import EmailProvider from "next-auth/providers/email"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { prisma } from "../../../src/config/database"
-import { Resend } from "resend"
-
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     EmailProvider({
       server: {
-        host: "smtp.resend.com",
+        host: "smtp.gmail.com",
         port: 587,
         auth: {
-          user: "resend",
-          pass: process.env.RESEND_API_KEY,
+          user: process.env.GMAIL_USER,
+          pass: process.env.GMAIL_APP_PASSWORD,
         },
       },
-      from: process.env.EMAIL_FROM || "onboarding@resend.dev",
+      from: process.env.GMAIL_USER,
       async sendVerificationRequest({ identifier: email, url, provider }) {
         try {
           console.log("Sending email to:", email)
           console.log("Magic link URL:", url)
 
-          const result = await resend.emails.send({
-            from: provider.from,
+          const nodemailer = require('nodemailer');
+          
+          // Fix: Use createTransport instead of createTransporter
+          const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false,
+            auth: {
+              user: process.env.GMAIL_USER,
+              pass: process.env.GMAIL_APP_PASSWORD,
+            },
+          });
+
+          const result = await transporter.sendMail({
+            from: `"Product Manager" <${process.env.GMAIL_USER}>`,
             to: email,
             subject: "Sign in to Product Manager",
             html: `
@@ -77,16 +87,19 @@ Click this link to sign in: ${url}
 
 This link will expire in 24 hours. If you didn't request this email, you can safely ignore it.
             `,
-          })
+          });
 
-          console.log("Email sent successfully:", result)
+          console.log("Email sent successfully:", result);
         } catch (error) {
+          console.error("Failed to send email:", error);
+          throw new Error(`Failed to send verification email: ${error.message}`);
           console.error("Failed to send email:", error)
           if (error instanceof Error) {
             throw new Error(`Failed to send verification email: ${error.message}`)
           } else {
             throw new Error("Failed to send verification email: Unknown error")
           }
+
         }
       },
     }),
@@ -113,6 +126,7 @@ This link will expire in 24 hours. If you didn't request this email, you can saf
     strategy: "jwt",
   },
   debug: process.env.NODE_ENV === "development",
+  useSecureCookies: process.env.NODE_ENV === "production",
 }
 
 export default NextAuth(authOptions)
