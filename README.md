@@ -13,39 +13,17 @@ A fullstack Next.js application for managing personal product lists with email-o
 
 ## Tech Stack
 
-- **Framework**: Next.js 14 with page Router
-- **Authentication**: NextAuth.js with Resend email provider
-- **Database**: Prisma with SQLite (easily switchable to PostgreSQL)
-- **Email**: Resend for reliable email delivery
+- **Framework**: Next.js 
+- **Authentication**: NextAuth.js with Nodemailer email provider
+- **Database**: Prisma with Postgres Neon
+- **Email**: Nodemailer for reliable email delivery
 - **Styling**: Tailwind CSS
 - **Drag & Drop**: @dnd-kit
 - **Data Fetching**: SWR
 - **Icons**: Lucide React
 
 ## Project Structure
-
-\`\`\`
-pages/                   → Entry points
-├── login.tsx           → Login page
-├── index.tsx           → Home page
-└── api/                → API routes
-
-src/
-├── screen/             → Screen components (no styles)
-│   ├── auth/
-│   │   └── login.page.tsx
-│   └── home.page.tsx
-├── layout/             → Styled UI components
-│   ├── input.layout.tsx
-│   ├── button.layout.tsx
-│   └── card.layout.tsx
-├── components/         → Feature components
-├── config/             → Configuration
-├── service/            → Frontend services
-├── backend/            → Backend services
-└── api/                → API logic
-\`\`\`
-
+<pre lang="markdown"> ```bash pages/ → Entry points ├── login.tsx → Login page ├── index.tsx → Home page └── api/ → API routes src/ ├── screen/ → Screen components (no styles) │ ├── auth/ │ │ └── login.page.tsx │ └── home.page.tsx ├── layout/ → Styled UI components │ ├── input.layout.tsx │ ├── button.layout.tsx │ └── card.layout.tsx ├── components/ → Feature components ├── config/ → Configuration ├── service/ → Frontend services ├── backend/ → Backend services └── api/ → API logic ``` </pre>
 ## Getting Started
 
 1. **Clone and install dependencies**:
@@ -53,10 +31,6 @@ src/
    npm install
    \`\`\`
 
-2. **Set up Resend account**:
-   - Go to [resend.com](https://resend.com) and create a free account
-   - Get your API key from the dashboard
-   - You get 100 free emails per day, 3,000 per month
 
 3. **Set up environment variables**:
    \`\`\`bash
@@ -111,7 +85,7 @@ EMAIL_FROM=your_ethereal_email
 
 ## 🚀 Deployment
 
-Push your forked repository to GitHub and [deploy it on Vercel](https://vercel.com/new).
+Push your forked repository to GitHub and [deploy it on Vercel]([https://vercel.com/new](https://product-manager-gamma.vercel.app)).
 
 ## 🧪 Tech Stack
 
@@ -131,19 +105,9 @@ The app uses SQLite by default for easy development. To switch to PostgreSQL:
 2. Change the provider in `prisma/schema.prisma` to `postgresql`
 3. Run `npm run db:push`
 
-## Deployment
 
 
 
-## Environment Variables for Production
-
-\`\`\`env
-DATABASE_URL="your-production-database-url"
-NEXTAUTH_URL="https://yourdomain.com"
-NEXTAUTH_SECRET="super-secure-random-string-for-production"
-RESEND_API_KEY="re_your_resend_api_key"
-EMAIL_FROM="noreply@yourdomain.com"
-\`\`\`
 
 
 
