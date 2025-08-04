@@ -23,7 +23,27 @@ A fullstack Next.js application for managing personal product lists with email-o
 - **Icons**: Lucide React
 
 ## Project Structure
-<pre lang="markdown"> ```bash pages/ → Entry points ├── login.tsx → Login page ├── index.tsx → Home page └── api/ → API routes src/ ├── screen/ → Screen components (no styles) │ ├── auth/ │ │ └── login.page.tsx │ └── home.page.tsx ├── layout/ → Styled UI components │ ├── input.layout.tsx │ ├── button.layout.tsx │ └── card.layout.tsx ├── components/ → Feature components ├── config/ → Configuration ├── service/ → Frontend services ├── backend/ → Backend services └── api/ → API logic ``` </pre>
+\`\`\`
+pages/                   → Entry points
+├── login.tsx           → Login page
+├── index.tsx           → Home page
+└── api/                → API routes
+
+src/
+├── screen/             → Screen components (no styles)
+│   ├── auth/
+│   │   └── login.page.tsx
+│   └── home.page.tsx
+├── layout/             → Styled UI components
+│   ├── input.layout.tsx
+│   ├── button.layout.tsx
+│   └── card.layout.tsx
+├── components/         → Feature components
+├── config/             → Configuration
+├── service/            → Frontend services
+├── backend/            → Backend services
+└── api/                → API logic
+\`\`\`
 ## Getting Started
 
 1. **Clone and install dependencies**:
