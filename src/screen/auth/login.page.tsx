@@ -37,7 +37,7 @@ export default function LoginPage() {
         setMessage(`Failed to send magic link: ${result.error}`)
         setMessageType("error")
       } else {
-        setMessage(`Magic link sent to ${email}! Check your inbox and spam folder.`)
+        setMessage(`Magic link sent to ${email}! Check your inbox and spam folder for the link. You may wait between 5-10 minutes.`)
         setMessageType("success")
       }
     } catch (error) {
