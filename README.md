@@ -85,17 +85,42 @@ src/
 6. **Open your browser**:
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## Email Configuration with Resend
 
-### Development Setup:
-1. Sign up at [resend.com](https://resend.com) (free tier: 100 emails/day)
-2. Get your API key from the dashboard
-3. Use `onboarding@resend.dev` as the from address (pre-verified)
+```
 
-### Production Setup:
-1. Add your own domain in Resend dashboard
-2. Verify DNS records
-3. Update `EMAIL_FROM` to use your domain: `noreply@yourdomain.com`
+## 📧 Email Configuration (IMPORTANT)
+
+This project uses **Nodemailer** for email delivery.
+
+For **development**, you can use a test SMTP provider like [Ethereal Email](https://ethereal.email/) (good for previewing emails).
+
+For **production** (e.g. on Vercel), you must configure a real email provider like **Gmail**, **Mailgun**, etc.
+
+Create a `.env.local` file:
+
+```bash
+# .env.local
+EMAIL_SERVER_HOST=smtp.ethereal.email
+EMAIL_SERVER_PORT=587
+EMAIL_SERVER_USER=your_ethereal_user
+EMAIL_SERVER_PASSWORD=your_ethereal_password
+EMAIL_FROM=your_ethereal_email
+```
+
+> ⚠️ **Disclaimer:** If you're using a free provider like Gmail, email delivery can take **5–10 seconds**. Gmail is recommended for Vercel deployment. Please be patient with any delays — this is due to service limitations.
+
+## 🚀 Deployment
+
+Push your forked repository to GitHub and [deploy it on Vercel](https://vercel.com/new).
+
+## 🧪 Tech Stack
+
+- Next.js (App Router)
+- Server Actions
+- Tailwind CSS
+- Nodemailer
+- TypeScript
+
 
 
 ## Database
