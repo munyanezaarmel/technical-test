@@ -23,6 +23,7 @@ A fullstack Next.js application for managing personal product lists with email-o
 - **Icons**: Lucide React
 
 ## Project Structure
+
 \`\`\`
 pages/                   → Entry points
 ├── login.tsx           → Login page
@@ -44,16 +45,17 @@ src/
 ├── backend/            → Backend services
 └── api/                → API logic
 \`\`\`
+
 ## Getting Started
 
 1. **Clone and install dependencies**:
-   \`\`\`bash
+   \`\`\
    npm install
    \`\`\`
 
 
 3. **Set up environment variables**:
-   \`\`\`bash
+   \`\`\`
    cp .env.example .env.local
    \`\`\`
    
@@ -67,12 +69,12 @@ src/
    \`\`\`
 
 4. **Set up the database**:
-   \`\`\`bash
+   \`\`\`
    npm run db:push
    \`\`\`
 
 5. **Start the development server**:
-   \`\`\`bash
+   \`\`\`
    npm run dev
    \`\`\`
 
@@ -92,7 +94,7 @@ For **production** (e.g. on Vercel), you must configure a real email provider li
 
 Create a `.env.local` file:
 
-```bash
+```
 # .env.local
 EMAIL_SERVER_HOST=smtp.ethereal.email
 EMAIL_SERVER_PORT=587
