@@ -93,6 +93,13 @@ This link will expire in 24 hours. If you didn't request this email, you can saf
         } catch (error) {
           console.error("Failed to send email:", error);
           throw new Error(`Failed to send verification email: ${error.message}`);
+          console.error("Failed to send email:", error)
+          if (error instanceof Error) {
+            throw new Error(`Failed to send verification email: ${error.message}`)
+          } else {
+            throw new Error("Failed to send verification email: Unknown error")
+          }
+
         }
       },
     }),
