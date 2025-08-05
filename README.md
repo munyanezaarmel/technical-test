@@ -1,138 +1,101 @@
-# Product Manager
+# 🛍️ Product Manager App
 
-A fullstack Next.js application for managing personal product lists with email-only authentication.
+A fullstack Next.js app for managing personal product lists with email-only authentication (magic link).
 
-## Features
+**⚠️ Note: Email delivery may take 5-10 minutes during testing**
 
-- 🔐 **Passwordless Authentication**: Email magic link login using NextAuth.js
-- 📝 **CRUD Operations**: Add, edit, delete, and view products
-- 🎯 **Inline Editing**: Edit products directly in the list
-- 🔄 **Drag & Drop Reordering**: Reorder items with drag and drop
-- 👤 **User Isolation**: Each user sees only their own products
-- 📱 **Responsive Design**: Works on desktop and mobile
+## 📸 Screenshots
 
-## Tech Stack
+<div align="center">
+<img width="752" height="643" alt="image" src="https://github.com/user-attachments/assets/9b4ad590-3c7a-4282-b164-39b0647d7769" />
+<img width="1177" height="742" alt="image" src="https://github.com/user-attachments/assets/7903fbc0-b209-4d8d-99b3-22671b44646e" />
+<img width="1545" height="909" alt="image" src="https://github.com/user-attachments/assets/4cb0d02a-5556-4c5c-a615-40b6eea28ec7" />
+</div>
 
-- **Framework**: Next.js 
-- **Authentication**: NextAuth.js with Nodemailer email provider
-- **Database**: Prisma with Postgres Neon
-- **Email**: Nodemailer for reliable email delivery
-- **Styling**: Tailwind CSS
-- **Drag & Drop**: @dnd-kit
-- **Data Fetching**: SWR
-- **Icons**: Lucide React
+## 🚀 Features
 
-## Project Structure
+- Email-only authentication (NextAuth magic link)
+- Add, edit, delete, and reorder products  
+- Inline editing with real-time updates
+- Users see only their own products
+- Custom email templates with professional design
 
-\`\`\`
-pages/                   → Entry points
-├── login.tsx           → Login page
-├── index.tsx           → Home page
-└── api/                → API routes
+## 🧑‍💻 Tech Stack
 
-src/
-├── screen/             → Screen components (no styles)
-│   ├── auth/
-│   │   └── login.page.tsx
-│   └── home.page.tsx
-├── layout/             → Styled UI components
-│   ├── input.layout.tsx
-│   ├── button.layout.tsx
-│   └── card.layout.tsx
-├── components/         → Feature components
-├── config/             → Configuration
-├── service/            → Frontend services
-├── backend/            → Backend services
-└── api/                → API logic
-\`\`\`
+- Next.js (Pages Router)
+- NextAuth.js (Email Provider + Gmail SMTP)
+- Tailwind CSS + shadcn/ui components
+- Prisma ORM + PostgreSQL
+- TypeScript
+- Nodemailer (Gmail integration)
 
-## Getting Started
+## ⚙️ Local Setup
 
-1. **Clone and install dependencies**:
-   \`\`\
-   npm install
-   \`\`\`
+```bash
+git clone https://github.com/munyanezaarmel/technical-test.git
+cd technical-test
+npm install
 
+# Setup environment variables
+cp .env.example .env.local
+# Add your Gmail credentials and database URL
 
-3. **Set up environment variables**:
-   \`\`\`
-   cp .env.example .env.local
-   \`\`\`
-   
-   Update your `.env.local`:
-   \`\`\`env
-   DATABASE_URL="file:./dev.db"
-   NEXTAUTH_URL="http://localhost:3000"
-   NEXTAUTH_SECRET="your-super-secret-key-here"
-   RESEND_API_KEY="re_your_actual_resend_api_key"
-   EMAIL_FROM="onboarding@resend.dev"
-   \`\`\`
+# Setup database
+npx prisma generate
+npx prisma db push
 
-4. **Set up the database**:
-   \`\`\`
-   npm run db:push
-   \`\`\`
-
-5. **Start the development server**:
-   \`\`\`
-   npm run dev
-   \`\`\`
-
-6. **Open your browser**:
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-
+# Run development server
+npm run dev
 ```
 
-## 📧 Email Configuration (IMPORTANT)
+### Environment Variables
 
-This project uses **Nodemailer** for email delivery.
+```env
+# Database
+DATABASE_URL="your-database-url"
 
-For **development**, you can use a test SMTP provider like [Ethereal Email](https://ethereal.email/) (good for previewing emails).
+# NextAuth
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your-secret-key"
 
-For **production** (e.g. on Vercel), you must configure a real email provider like **Gmail**, **Mailgun**, etc.
-
-Create a `.env.local` file:
-
-```
-# .env.local
-EMAIL_SERVER_HOST=smtp.ethereal.email
-EMAIL_SERVER_PORT=587
-EMAIL_SERVER_USER=your_ethereal_user
-EMAIL_SERVER_PASSWORD=your_ethereal_password
-EMAIL_FROM=your_ethereal_email
+# Gmail SMTP
+GMAIL_USER="your-email@gmail.com"
+GMAIL_APP_PASSWORD="your-gmail-app-password"
 ```
 
-> ⚠️ **Disclaimer:** If you're using a free provider like Gmail, email delivery can take **5–10 seconds**. Gmail is recommended for Vercel deployment. Please be patient with any delays — this is due to service limitations.
+## 📧 Email Configuration
+
+- Uses Gmail SMTP for sending magic links
+- Requires Gmail App Password (2FA must be enabled)
+- Custom HTML email templates with branding
+- Fallback text emails for accessibility
+
+## 🎯 Implementation Highlights
+
+- **Custom NextAuth email provider** with Gmail SMTP
+- **Prisma database adapter** for user sessions
+- **Professional email templates** with gradients and styling
+- **JWT session management** for secure authentication
+- **Error handling and logging** for debugging
 
 ## 🚀 Deployment
 
-Push your forked repository to GitHub and [deploy it on Vercel]([https://vercel.com/new](https://product-manager-gamma.vercel.app)).
+The app is deployed on Vercel with production environment variables configured.
 
-## 🧪 Tech Stack
+[![Vercel](https://vercel.com/button)](https://product-manager-gamma.vercel.app/)
 
-- Next.js (App Router)
-- Server Actions
-- Tailwind CSS
-- Nodemailer
-- TypeScript
+**Live URL:** [https://product-manager-gamma.vercel.app/](https://product-manager-gamma.vercel.app/)
 
+## 🐛 Known Issues
 
+- Email delivery can be slow (5-10 minutes) during testing
+- Gmail may require App Password setup for SMTP authentication
 
-## Database
+## 📝 Notes
 
-The app uses SQLite by default for easy development. To switch to PostgreSQL:
+This is a technical test implementation demonstrating:
 
-1. Update `DATABASE_URL` in your `.env.local`
-2. Change the provider in `prisma/schema.prisma` to `postgresql`
-3. Run `npm run db:push`
-
-
-
-
-
-
-
-## License
-
-MIT License - see LICENSE file for details.
+- NextAuth.js integration with email providers
+- Custom email template design
+- Database operations with Prisma
+- Modern React patterns and TypeScript
